@@ -15,9 +15,12 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import org.springframework.util.StringUtils;
+import org.springframework.samples.petclinic.util.Strings;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * <code>Validator</code> for <code>Pet</code> forms.
@@ -25,19 +28,39 @@ import org.springframework.validation.Validator;
  * We're not using Bean Validation annotations here because it is easier to define such validation rule in Java.
  * </p>
  *
+ * @@@SOLID@@@ consider both the Open Closed principle here as well as the Dependency Injection principle
+ *
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
 public class PetValidator implements Validator {
 
+    private static final String AGGRESSIVE_RACE = "aggressive_race";
     private static final String REQUIRED = "required";
+    // @@@EFFECTIVE@@@ item 34
+    // @@@EFFECTIVE@@@ item 35 – set up race aggresiveness in an order (not necessarily sensible)
+    // @@@EFFECTIVE@@@ item 38 – imagine the existence of some "aggressive races controller/repo" etc
+    public static final String CA_DE_BOU = "249";
+    public static final String DOGO_CANARIO = "346";
+    public static final String BULL_TERRIER = "011";
+    public static final String DOGO_ARGENTINO = "292";
+    public static final String TOSA = "260";
+    public static final String ROTTWEILER = "147";
+    public static final HashSet<String> AGGRESSIVE_RACES_IN_POLAND = new HashSet<>(Arrays.asList(
+        BULL_TERRIER,
+        CA_DE_BOU,
+        DOGO_ARGENTINO,
+        DOGO_CANARIO,
+        TOSA,
+        ROTTWEILER
+    ));
 
     @Override
     public void validate(Object obj, Errors errors) {
         Pet pet = (Pet) obj;
         String name = pet.getName();
         // name validation
-        if (!StringUtils.hasLength(name)) {
+        if (!Strings.hasLength(name)) {
             errors.rejectValue("name", REQUIRED, REQUIRED);
         }
 
@@ -46,10 +69,22 @@ public class PetValidator implements Validator {
             errors.rejectValue("type", REQUIRED, REQUIRED);
         }
 
+        if (isADog(pet) && isAnAgressiveRaceInPoland(pet)) {
+            errors.rejectValue("raceCode", REQUIRED, REQUIRED);
+        }
+
         // birth date validation
         if (pet.getBirthDate() == null) {
             errors.rejectValue("birthDate", REQUIRED, REQUIRED);
         }
+    }
+
+    private boolean isAnAgressiveRaceInPoland(Pet pet) {
+        return AGGRESSIVE_RACES_IN_POLAND.contains(pet.getRaceCode());
+    }
+
+    private boolean isADog(Pet pet) {
+        return pet.getType().getName().equals("dog");
     }
 
     /**

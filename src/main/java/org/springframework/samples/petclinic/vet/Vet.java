@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.vet;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -32,8 +33,10 @@ import javax.xml.bind.annotation.XmlElement;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.samples.petclinic.model.Person;
+import org.springframework.samples.petclinic.owner.Pet;
 
 /**
+ * @@@SOLID@@@ THIS CLASS (AND A FEW OTHERS TOGETHER WITH IT) MAKE FOR A HUGE VIOLATION OF LISKOV SUBSTITUTION PRINCIPLE
  * Simple JavaBean domain object representing a veterinarian.
  *
  * @author Ken Krebs
@@ -43,11 +46,13 @@ import org.springframework.samples.petclinic.model.Person;
  */
 @Entity
 @Table(name = "vets")
-public class Vet extends Person {
+public class Vet extends Person implements VetLike {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
     private Set<Specialty> specialties;
+
+    private LocalDate birthday;
 
     protected Set<Specialty> getSpecialtiesInternal() {
         if (this.specialties == null) {
@@ -76,4 +81,42 @@ public class Vet extends Person {
         getSpecialtiesInternal().add(specialty);
     }
 
+    @Override
+    protected Set<Pet> getPetsInternal() {
+        throw new IllegalStateException("only an owner can have pets!");
+    }
+
+    @Override
+    protected void setPetsInternal(Set<Pet> pets) {
+        throw new IllegalStateException("only an owner can have pets!");
+    }
+
+    @Override
+    public List<Pet> getPets() {
+        throw new IllegalStateException("only an owner can have pets!");
+    }
+
+    @Override
+    public void addPet(Pet pet) {
+        throw new IllegalStateException("only an owner can have pets!");
+    }
+
+    @Override
+    public Pet getPet(String name) {
+        throw new IllegalStateException("only an owner can have pets!");
+    }
+
+    @Override
+    public Pet getPet(String name, boolean ignoreNew) {
+        throw new IllegalStateException("only owner can have pets!");
+    }
+
+    @Override
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
 }

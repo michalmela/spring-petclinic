@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'birthdays')}">
+
+<body>
+
+  <h2>Birthdays</h2>
+
+  <table id="birthdays" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="person : ${persons}">
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.birthday}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

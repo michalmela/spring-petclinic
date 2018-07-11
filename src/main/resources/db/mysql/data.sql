@@ -33,9 +33,9 @@ INSERT IGNORE INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madi
 INSERT IGNORE INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435');
 INSERT IGNORE INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487');
 
-INSERT IGNORE INTO pets VALUES (1, 'Leo', '2000-09-07', 1, 1);
-INSERT IGNORE INTO pets VALUES (2, 'Basil', '2002-08-06', 6, 2);
-INSERT IGNORE INTO pets VALUES (3, 'Rosy', '2001-04-17', 2, 3);
+INSERT IGNORE INTO pets VALUES (1, 'Leo', '', '2000-09-07', 1, 1);
+INSERT IGNORE INTO pets VALUES (2, 'Basil', '',  '2002-08-06', 6, 2);
+INSERT IGNORE INTO pets VALUES (3, 'Rosy', '', '2001-04-17', 2, 3);
 INSERT IGNORE INTO pets VALUES (4, 'Jewel', '2000-03-07', 2, 3);
 INSERT IGNORE INTO pets VALUES (5, 'Iggy', '2000-11-30', 3, 4);
 INSERT IGNORE INTO pets VALUES (6, 'George', '2000-01-20', 4, 5);

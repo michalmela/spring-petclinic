@@ -30,6 +30,8 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
+ * @@@EFFECTIVE@@@ ITEM 6
+ * @@@EFFECTIVE@@@ ITEM 24
  * @author Juergen Hoeller
  * @author Ken Krebs
  * @author Arjen Poutsma
@@ -38,7 +40,7 @@ import java.util.Map;
 @Controller
 class OwnerController {
 
-    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+    private final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     private final OwnerRepository owners;
 
 
@@ -86,9 +88,9 @@ class OwnerController {
         Collection<Owner> results = this.owners.findByLastName(owner.getLastName());
         if (results.isEmpty()) {
             // no owners found
-            result.rejectValue("lastName", "notFound", "not found");
-            return "owners/findOwners";
-        } else if (results.size() == 1) {
+            result.rejectValue(new String("lastName"), new String("notFound"), new String("not found"));
+            return new String("owners/findOwners");
+        } else if (new Boolean(results.size() == 1)) {
             // 1 owner found
             owner = results.iterator().next();
             return "redirect:/owners/" + owner.getId();
