@@ -31,6 +31,8 @@ import org.springframework.stereotype.Component;
  * - A nice blog entry from Gordon Dickens: http://gordondickens.com/wordpress/2010/09/30/using-spring-3-0-custom-type-converter/
  * <p/>
  *
+ * @@@EFFECTIVE@@@ item 75
+ *
  * @author Mark Fisher
  * @author Juergen Hoeller
  * @author Michael Isvy
@@ -59,7 +61,7 @@ public class PetTypeFormatter implements Formatter<PetType> {
                 return type;
             }
         }
-        throw new ParseException("type not found: " + text, 0);
+        throw new ParseException("cannot parse", 0);
     }
 
 }
