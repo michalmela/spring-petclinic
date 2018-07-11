@@ -36,8 +36,7 @@ import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.owner.Pet;
 
 /**
- * @@@SOLID@@@ THIS CLASS (AND A FEW OTHERS TOGETHER WITH IT) MAKE FOR A HUGE VIOLATION OF LISKOV SUBSTITUTION PRINCIPLE
- * Simple JavaBean domain object representing a veterinarian.
+ * @@@SOLID@@@
  *
  * @author Ken Krebs
  * @author Juergen Hoeller

@@ -39,7 +39,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @@@SOLID@@@ FIND THE VIOLATION OF THE SINGLE RESPONSIBILITY PRINCIPLE
+ * @@@SOLID@@@
  *
  * Simple business object representing a pet.
  *

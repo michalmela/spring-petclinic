@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 import static java.util.Collections.emptyList;
 
 /**
- * @@@SOLID@@@ various principles are violated here: OCP (ifs), ISP (having birthday on multiple interfaces), SRP (extracting birthdays multiple ways in a single class)
+ * @@@SOLID@@@
  */
 @Controller
 class BirthdayController {

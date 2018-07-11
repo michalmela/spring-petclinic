@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.model;
 
 /**
- * @@@SOLID@@@ what could be said about the interface segregation in this interface?
+ * @@@SOLID@@@
  */
 public interface Human {
     String getFirstName();

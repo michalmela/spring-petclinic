@@ -28,7 +28,7 @@ import java.util.HashSet;
  * We're not using Bean Validation annotations here because it is easier to define such validation rule in Java.
  * </p>
  *
- * @@@SOLID@@@ consider both the Open Closed principle here as well as the Dependency Injection principle
+ * @@@SOLID@@@
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
